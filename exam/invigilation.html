@@ -154,37 +154,56 @@ input:checked + .slider:before {
 	</center>
 </div>
 <div id="roomDetails">
+	<center>
 	<fieldset>
-    	<center><h3>All online Examination room details || Manage & Modifications</h3><br><button class="button" onclick="getAllRooms()">Reload Room Details</button></center>
+    	<center><h3>Online Invigilation || Manage Students</h3><br></center>
     	<table>
     		<tr>
     			<th>Room No.</th>
     			<th>Room OTP</th>
-    			<th>Accessed By</th>
-    			<th>Update</th>
-    			<th>Remove</th>
+    			<th>Update OTP</th>
     		</tr>
     		<tbody id="tab_room">
     			
     		</tbody>
     	</table>
+    	<button class="button" onclick="getRoomDetails()">Retrieve / Refresh Student List</button>
     </fieldset>
+	</center>
 </div>
 <div id="studentDetails">
 	<fieldset>
-    	<center><h3>Student List</h3><br><button class="button" onclick="getAllRooms()">Reload Room Details</button></center>
+    	<center><h3>Student List (All)</h3><br>
     	<table>
     		<tr>
-    			<th>Room No.</th>
-    			<th>Room OTP</th>
-    			<th>Accessed By</th>
-    			<th>Update</th>
-    			<th>Remove</th>
+    			<th>Class</th>
+    			<th>Name</th>
+    			<th>Roll</th>
+    			<th>App Minimized</th>
     		</tr>
-    		<tbody id="tab_room">
+    		<tbody id="tab_student">
     			
     		</tbody>
     	</table>
+    	</center>
+    </fieldset>
+</div>
+<div id="minimizationDetails">
+	<fieldset>
+    	<center><h3>Student List (Minimized App)</h3><br>
+    	<table>
+    		<tr>
+    			<th>Class</th>
+    			<th>Name</th>
+    			<th>Roll</th>
+    			<th>App Minimized</th>
+    			<th>Remove</th>
+    		</tr>
+    		<tbody id="tab_minimized">
+    			
+    		</tbody>
+    	</table>
+    	</center>
     </fieldset>
 </div>
 
