@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>North Kolkata Public High School || Online Invigilation Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>  
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+input[type=text], input[type=number], select {
+  width: 150px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 150px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  padding: 20px;
+}
+#tab_report {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  position: relative;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr{
+  background-color: #acc2c5;
+}
+</style>
+<style type="text/css">
+input[type=button]{
+  background-color: #6399db;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button {
+  background-color: #6399db;
+  color: black;
+  border: none;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<center><h1>North Kolkata Public High School || Online Invigilation Portal</h1></center>
+<div id="roomCredentials">
+	<center>
+	<table>
+		<tr>
+			<td>Room No.: <input type="number" id="roomID" name="roomid"></td>
+        	<td>Accessor: <input type="text" id="roomAccessor" name="roomAccessor"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><center><button onclick="getRoomDetails()" id="getRoomDetails" class="button">Invigilate</button></center></td>
+		</tr>
+	</table>
+	</center>
+</div>
+<div id="roomDetails">
+	<fieldset>
+    	<center><h3>All online Examination room details || Manage & Modifications</h3><br><button class="button" onclick="getAllRooms()">Reload Room Details</button></center>
+    	<table>
+    		<tr>
+    			<th>Room No.</th>
+    			<th>Room OTP</th>
+    			<th>Accessed By</th>
+    			<th>Update</th>
+    			<th>Remove</th>
+    		</tr>
+    		<tbody id="tab_room">
+    			
+    		</tbody>
+    	</table>
+    </fieldset>
+</div>
+<div id="studentDetails">
+	<fieldset>
+    	<center><h3>Student List</h3><br><button class="button" onclick="getAllRooms()">Reload Room Details</button></center>
+    	<table>
+    		<tr>
+    			<th>Room No.</th>
+    			<th>Room OTP</th>
+    			<th>Accessed By</th>
+    			<th>Update</th>
+    			<th>Remove</th>
+    		</tr>
+    		<tbody id="tab_room">
+    			
+    		</tbody>
+    	</table>
+    </fieldset>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<script src="invigilation.js"></script>
+</body>
+</html>
