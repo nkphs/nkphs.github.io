@@ -1,5 +1,7 @@
 var examDate = "";
 var examDateKey = "";
+var controller = 0;
+
 var finalInstruction = "<b>Do not minimize the app or do not press back button once exam has started</b>";
 var config = {
     apiKey: "AIzaSyCSoiDuslBP3AsGgA7tNT1Bq02XB8wEGe8",
@@ -76,6 +78,24 @@ rootRef.on("child_added", snap => {
 var examID = snap.child("id").val();
 getAllPapers(examID);
 });
+}
+
+function getAllSettings(){
+var rootRef = firebase.database().ref('examination/portal');
+rootRef.on("child_added", snap => {
+var settingsActivation = snap.child("activation").val();
+var settingsID = snap.child("id").val();
+    if(settingsID == "exam"){
+      $("#portalStatus").val(settingsActivation);
+    }
+    });
+rootRef.on("child_changed", snap => {
+var settingsActivation = snap.child("activation").val();
+var settingsID = snap.child("id").val();
+    if(settingsID == "exam"){
+      $("#portalStatus").val(settingsActivation);
+    }
+    });
 }
 
 function getAllRooms(){
@@ -386,4 +406,80 @@ function submitRoomDetails(){
       'New Room Added.',
       'success'
     )
+}
+
+
+function openPage(evt, tabName) {
+  if(controller == 1){
+    var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+  }
+  else{
+    document.getElementById("defaultOpen").click();
+    Swal.fire(
+      'Access Denied',
+      'Login to proceed.',
+      'error'
+    )
+  }
+}
+function openLogin(evt, tabName) {
+    var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
+
+
+function checkLogin() {
+  if(document.getElementById("loginPassword").value == "ExamAdmin@NKPHS"){
+    controller = 1;
+    Swal.fire(
+      'Success',
+      'Choose tab to proceed.',
+      'success'
+    )
+    getAllSettings();
+  }
+  else{
+    controller = 0;
+    Swal.fire(
+      'Access Denied',
+      'Login to proceed.',
+      'error'
+    )
+  }
+}
+
+function changePortal(){
+      Swal.fire({
+  title: 'Do you want to update exam portal activation?',
+  showDenyButton: false,
+  showCancelButton: true,
+  confirmButtonText: `Update`,
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire('Udated!', 'Exam Portal Activation Updated', 'success')
+    firebase.database().ref("examination/portal/exam").update({activation:document.getElementById("portalStatus").value});
+  }
+})
+  
 }
