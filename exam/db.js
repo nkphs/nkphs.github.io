@@ -130,16 +130,24 @@ var examActivation = snap.child("examActivation").val();
 var examInstruction = snap.child("examInstruction").val();
 var examPassCode = snap.child("examPassCode").val();
 var examRoom = snap.child("examRoom").val();
-var updbtn = '<button onclick="updateExam(\'' + examID + '\',\'' + examClass + '\')" class="button">Update Exam Details</button>';
+var examMultiple = snap.child("multiple").val();
+var updbtn = '<button onclick="updateExam(\'' + examID + '\',\'' + examClass + '\',\'' + examMultiple + '\')" class="button">Update Exam Details</button>';
 var removebtn = '<button onclick="removeExam(\'' + examID + '\',\'' + examClass + '\')" class="button">Remove Exam</button>';
 
 if(examDate != null){
+  if(examMultiple == "YES"){
+
+    $("#tab_report").append("<tr id=tr" + examID + examClass +"><td>" + examName + "</td><td>" + examDate + "</td><td>" + examClass + "</td><td><input type=\"text\" id=\"downloadable" + examID + examClass + "\" value=\"" + questionDownloadable + "\"></td><td><input type=\"text\" id=\"examActivation" + examID + examClass + "\" value=\"" + examActivation + "\"></td><td>" + examSubject + "<br>" + snap.child("examSubject2").val() + "</td><td><input type=\"text\" id=\"examTime" + examID + examClass + "\" value=\"" + examTime + "\"></td><td><input type=\"text\" id=\"examFullMarks" + examID + examClass + "\" value=\"" + examFullMarks + "\"></td><td>" + examInstruction + "</td><td>" + examType + "<br>" + snap.child("examType2").val() + "</td><td>" + examLink + "<br>" + snap.child("examLink2").val() + "</td><td><input type=\"text\" id=\"examPassCode" + examID + examClass + "\" value=\"" + examPassCode + "\"><br><input type=\"text\" id=\"examPassCode2" + examID + examClass + "\" value=\"" + snap.child("examPassCode2").val() + "\"></td><td><input type=\"text\" id=\"examRoom" + examID + examClass + "\" value=\"" + examRoom + "\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+  }
+  else{
     $("#tab_report").append("<tr id=tr" + examID + examClass +"><td>" + examName + "</td><td>" + examDate + "</td><td>" + examClass + "</td><td><input type=\"text\" id=\"downloadable" + examID + examClass + "\" value=\"" + questionDownloadable + "\"></td><td><input type=\"text\" id=\"examActivation" + examID + examClass + "\" value=\"" + examActivation + "\"></td><td>" + examSubject + "</td><td><input type=\"text\" id=\"examTime" + examID + examClass + "\" value=\"" + examTime + "\"></td><td><input type=\"text\" id=\"examFullMarks" + examID + examClass + "\" value=\"" + examFullMarks + "\"></td><td>" + examInstruction + "</td><td>" + examType + "</td><td>" + examLink + "</td><td><input type=\"text\" id=\"examPassCode" + examID + examClass + "\" value=\"" + examPassCode + "\"></td><td><input type=\"text\" id=\"examRoom" + examID + examClass + "\" value=\"" + examRoom + "\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+  }
 }
 
 });
 }
-function updateExam(ID,cls) {
+
+function updateExam(ID,cls,mult) {
     Swal.fire({
   title: 'Are you sure?',
   text: "Selected item will be updated.",
@@ -158,6 +166,11 @@ function updateExam(ID,cls) {
         examRoom: document.getElementById("examRoom" + ID + cls).value,
         examTime: document.getElementById("examTime" + ID + cls).value,
     });
+    if(mult == "YES"){
+      firebase.database().ref("examination/student/" + ID + "/" + cls).update({
+        examPassCode2: document.getElementById("examPassCode2" + ID + cls).value
+    });
+    }
     Swal.fire(
       'Success!',
       'Exam Details Updated.',
