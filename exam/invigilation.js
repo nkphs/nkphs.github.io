@@ -41,8 +41,10 @@ var minimized = snap.child("minimized").val();
 var studentName = snap.child("name").val();
 var studentRoll = snap.child("roll").val();
 var room = snap.child("room").val();
-	
-    $("#tab_student").append("<tr id=trStudent" + studentRoll + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td></tr>");
+
+var removebtn = '<button onclick="removeFromDB(' + studentRoll + ')" class="button">Remove</button>';
+
+    $("#tab_student").append("<tr id=trStudent" + studentRoll + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td><td>" + removebtn + "</td></tr>");
 });
 
 var rootRef = firebase.database().ref('examination/room/' + selectedRoom + "/attendance");
@@ -80,4 +82,26 @@ function generateOTP(room) {
 }
 function removeFromList(stdID) {
 	document.getElementById("trMinimized" + stdID).style.display = "none";
+}
+
+function removeFromDB(stdID) {
+Swal.fire({
+  title: 'Are you sure?',
+  text: "Selected student will be removed from current Exam room.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Remove'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref('examination/room/' + selectedRoom + '/attendance/' + stdID).remove();
+    document.getElementById("trStudent" + stdID).style.display = "none";
+    Swal.fire(
+      'Deleted!',
+      'Student Removed.',
+      'success'
+    )
+  }
+});
 }
