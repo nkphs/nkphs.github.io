@@ -421,6 +421,14 @@ function submitRoomDetails(){
     )
 }
 
+window.onload = (event) => {
+  if(location.search.substring(1).split("=")[1] == "mobs"){
+    controller = 1;
+    getAllSettings();
+    document.getElementById("defaultOpen").style.display = "none";
+    openPage(event, 'Settings');
+  }
+};
 
 function openPage(evt, tabName) {
   if(controller == 1){
