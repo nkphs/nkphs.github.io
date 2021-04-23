@@ -198,6 +198,7 @@ input:checked + .slider:before {
   <button class="tablinks" onclick="openLogin(event, 'Login')" id="defaultOpen">Login</button>
   <button class="tablinks" onclick="openPage(event, 'Settings')">Settings</button>
   <button class="tablinks" onclick="openPage(event, 'Question')">Question Upload & Modifcation</button>
+  <button class="tablinks" onclick="openPage(event, 'NoticeUpload')">Upload Notice</button>
   <button class="tablinks" onclick="openPage(event, 'Invigilation')">Invigilation</button>
   <button class="tablinks" onclick="openPage(event, 'Evaluation')">Evauation</button>
   <button class="tablinks" onclick="openPage(event, 'Scorecard')">Scorecard Generation</button>
@@ -339,6 +340,75 @@ input:checked + .slider:before {
       </table>
     </fieldset>
 </div>
+</div>
+	
+<div id="NoticeUpload" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <h3>Upload New Notice</h3>
+  <p>North kolkata Public High School.</p>
+  <table>
+          <tr>
+            <td>
+              Class: <input type="text" id="noticeClass" name="noticeClass">
+            </td>
+            <td>
+              Date: <input type="date" id="noticeDate" name="noticeDate">
+            </td>
+            <td>
+              Month: <input type="text" id="noticeMonth" name="noticeMonth">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              Instruction:<br><textarea id="noticeInstruction" rows="4" cols="50" name="noticeinstruction">*It is hereby notified to all students of class ...*</textarea><br>
+              General guidlines: (Use '*' for <b>Bold</b>, use '_' for <i>Italic</i>, use '`' for <u>Underline</u>, use '^' to make a text at the Center of the Screen) 
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              View: <fieldset>
+              <div id="noticeMain"><b>It is hereby notified to all students of class ...</b></div><br>
+                </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              Important Lines (as <b>N.B.</b>): <textarea rows="2" cols="50" id="noticeNB" name="noticeNB"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              
+            </td>
+            <td><center>
+              <button onclick="uploadNewNotice()" id="noticeAdd" class="button">Upload Notice</button>
+            </center>
+            </td>
+            <td></td>
+          </tr>
+  </table>
+<center>
+  <h3>Load/ refresh all Notices</h3>
+  <button onclick="loadAllNotice()" id="noticeAdd" class="button">Load / Refresh Notice</button>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Class</th>
+      <th>Date</th>
+      <th>Month</th>
+      <th>Main Notice</th>
+      <th><b>N.B.</b></th>
+      <th>Update</th>
+      <th>Remove</th>
+    </tr>
+    <tbody id="noticeAllView">
+      
+    </tbody>
+  </table>
+</center>
+  
+  
 </div>
 
 <div id="Invigilation" class="tabcontent">
