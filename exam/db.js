@@ -580,7 +580,9 @@ function convertNotice() {
 var el = document.getElementById('noticeInstruction');
 el.onkeyup = convertNotice;
 
-
+function getNoticeHTML(){
+  alert(finalNotice);
+}
 
 function generateOTP(room) {
     var otp = Math.floor(1000 + Math.random() * 9000);
