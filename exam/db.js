@@ -126,7 +126,7 @@ var noticeMain = snap.child("main").val();
 var noticeNB = snap.child("nb").val();
 var updbtn = '<button onclick="updateNotice(\'' + noticeID + '\')" class="button">Update Notice Details</button>';
 var removebtn = '<button onclick="removeNotice(\'' + noticeID + '\')" class="button">Remove Notice</button>';
-    $("#noticeAllView").append("<tr id=trNotice" + noticeID + "><td>" + noticeID + "</td><td><input type=\"text\" id=\"noticeClass" + noticeID + "\" value=\"" + noticeClass +"\"></td><td><input type=\"text\" id=\"noticeDate" + noticeID + "\" value=\"" + noticeDate +"\"></td><td><input type=\"text\" id=\"noticeMonth" + noticeID + "\" value=\"" + noticeMonth +"\"></td><td><textarea rows="4" cols="50" id=\"noticeMain" + noticeID + "\">" + noticeMain +"</textarea></td><td><input type=\"text\" id=\"noticeNB" + noticeID + "\" value=\"" + noticeNB +"\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    $("#noticeAllView").append("<tr id=trNotice" + noticeID + "><td>" + noticeID + "</td><td><input type=\"text\" id=\"noticeClass" + noticeID + "\" value=\"" + noticeClass +"\"></td><td><input type=\"text\" id=\"noticeDate" + noticeID + "\" value=\"" + noticeDate +"\"></td><td><input type=\"text\" id=\"noticeMonth" + noticeID + "\" value=\"" + noticeMonth +"\"></td><td><textarea rows=\"4\" cols=\"50\" id=\"noticeMain" + noticeID + "\">" + noticeMain +"</textarea></td><td><input type=\"text\" id=\"noticeNB" + noticeID + "\" value=\"" + noticeNB +"\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 });
 }
 
