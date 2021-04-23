@@ -3,6 +3,7 @@ var examDateKey = "";
 var controller = 0;
 
 var finalInstruction = "<b>Do not minimize the app or do not press back button once exam has started</b>";
+var finalNotice = "<b>It is hereby notified to all students of class ...</b>";
 var config = {
     apiKey: "AIzaSyCSoiDuslBP3AsGgA7tNT1Bq02XB8wEGe8",
     authDomain: "nkphs2020.firebaseapp.com",
@@ -109,6 +110,23 @@ var roomAccessor = snap.child("accessedBy").val();
 var updbtn = '<button onclick="updateRoom(\'' + roomID + '\')" class="button">Update Room Details / Change OTP</button>';
 var removebtn = '<button onclick="removeRoom(\'' + roomID + '\')" class="button">Remove Room</button>';
     $("#tab_room").append("<tr id=trRoom" + roomID + "><td>" + roomID + "</td><td><input type=\"text\" onclick=\"generateOTP(this.id)\" id=\"roomOTP" + roomID + "\" value=\"" + roomOTP +"\"></td><td><input type=\"text\" id=\"accessedBy" + roomID + "\" value=\"" + roomAccessor + "\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+});
+}
+
+function loadAllNotice(){
+    $("#noticeAllView").empty();
+    var rootRef = firebase.database().ref('notices/student');
+
+rootRef.on("child_added", snap => {
+var noticeID = snap.child("id").val();
+var noticeClass = snap.child("class").val();
+var noticeDate = snap.child("date").val();
+var noticeMonth = snap.child("month").val();
+var noticeMain = snap.child("main").val();
+var noticeNB = snap.child("nb").val();
+var updbtn = '<button onclick="updateNotice(\'' + noticeID + '\')" class="button">Update Notice Details</button>';
+var removebtn = '<button onclick="removeNotice(\'' + noticeID + '\')" class="button">Remove Notice</button>';
+    $("#noticeAllView").append("<tr id=trNotice" + noticeID + "><td>" + noticeID + "</td><td><input type=\"text\" id=\"noticeClass" + noticeID + "\" value=\"" + noticeClass +"\"></td><td><input type=\"text\" id=\"noticeDate" + noticeID + "\" value=\"" + noticeDate +"\"></td><td><input type=\"text\" id=\"noticeMonth" + noticeID + "\" value=\"" + noticeMonth +"\"></td><td><textarea id=\"noticeMain" + noticeID + "\">" + noticeMain +"</textarea></td><td><input type=\"text\" id=\"noticeNB" + noticeID + "\" value=\"" + noticeNB +"\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 });
 }
 
@@ -247,6 +265,57 @@ function removeRoom(ID) {
 });
     
 }
+
+
+function updateNotice(ID){
+        Swal.fire({
+  title: 'Are you sure?',
+  text: "Selected notice details will be updated.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Update'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref("notices/student/" + ID).update({
+        class: document.getElementById("noticeClass" + ID).value,
+        date: document.getElementById("noticeDate" + ID).value,
+        month: document.getElementById("noticeMonth" + ID).value,
+        main: document.getElementById("noticeMain" + ID).value,
+        nb: document.getElementById("noticeNB" + ID).value
+    });
+    Swal.fire(
+      'Success!',
+      'Notice Details Updated.',
+      'success'
+    )
+  }
+});
+}
+function removeNotice(ID) {
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "Selected notice will be removed from online Notice Board.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Remove'
+}).then((result) => {
+  if (result.isConfirmed) {
+    document.getElementById("trNotice" + ID).style.display = "none";
+    firebase.database().ref("notices/student/" + ID).remove(); 
+    Swal.fire(
+      'Deleted!',
+      'Notice Removed.',
+      'success'
+    )
+  }
+});
+    
+}
+
 
 function submitQuestionPaper() {
   var date = new Date($('#examDate').val());
@@ -404,6 +473,115 @@ function convert() {
 var el = document.getElementById('examInstruction');
 el.onkeyup = convert;
 
+
+function convertNotice() {    
+    var input_str; //store input
+    var text_input; //store input after beging trim()med
+    var output_html=""; //store output
+    var counter;    
+    
+    input_str=document.getElementById('noticeInstruction').value; //get input and store it in input_str
+    text_input=input_str.trim(); //trim() input
+    if(text_input.length > 0){
+        boldcounter = 0;
+        italiccounter = 0;
+        underlinecounter = 0;
+        centercounter = 0;
+        output_html+="<p>"; //begin by creating paragraph
+        for(counter=0; counter < text_input.length; counter++){
+            switch (text_input[counter]){
+                case '\n':
+                    if (text_input[counter+1]==='\n'){
+                        output_html+="</p>\n<p>";
+                        counter++;
+                    }
+                    else output_html+="<br>";           
+                    break;
+                
+                case ' ':
+                    if(text_input[counter-1] != ' ' && text_input[counter-1] != '\t')
+                        output_html+=" ";                                                       
+                    break;
+                    
+                case '\t':
+                    if(text_input[counter-1] != '\t')
+                        output_html+=" ";
+                    break;
+                
+                case '&':
+                    output_html+="&amp;";
+                    break;
+                
+                case '"':
+                    output_html+="&quot;";
+                    break;
+                case '*':
+                    if(boldcounter == 0){
+                        output_html+="<b>";
+                        boldcounter ++;
+                    }
+                    else{
+                        output_html+="</b>";
+                        boldcounter = 0;
+                    }
+                    break;
+                case '_':
+                    if(italiccounter == 0){
+                        output_html+="<i>";
+                        italiccounter ++;
+                    }
+                    else{
+                        output_html+="</i>";
+                        italiccounter = 0;
+                    }
+                    break;
+                case '`':
+                    if(underlinecounter == 0){
+                        output_html+="<u>";
+                        underlinecounter ++;
+                    }
+                    else{
+                        output_html+="</u>";
+                        underlinecounter = 0;
+                    }
+                    break;
+                case '^':
+                    if(centercounter == 0){
+                        output_html+="<center>";
+                        centercounter ++;
+                    }
+                    else{
+                        output_html+="</center>";
+                        centercounter = 0;
+                    }
+                    break;
+                
+                case '>':
+                    output_html+="&gt;";
+                    break;
+                
+                case '<':
+                    output_html+="&lt;";
+                    break;              
+                
+                default:
+                    output_html+=text_input[counter];
+                    
+            }
+                    
+        }
+        output_html+="</p>"; //finally close paragraph
+    }
+    //document.getElementById('out_html').value = output_html; // display output html 
+    finalNotice = output_html;
+    document.getElementById("noticeMain").innerHTML = output_html;
+}
+
+var el = document.getElementById('noticeInstruction');
+el.onkeyup = convertNotice;
+
+
+
 function generateOTP(room) {
     var otp = Math.floor(1000 + Math.random() * 9000);
     document.getElementById(room).value = otp;
@@ -504,3 +682,40 @@ function changePortal(){
 })
   
 }
+
+function uploadNewNotice() {
+    Swal.fire({
+  title: 'Do you want to upload new notice?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: `Upload`,
+  denyButtonText: `Don't upload`,
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire('Uploaded!', '', 'success')
+    callNoticeSave();
+  } else if (result.isDenied) {
+    Swal.fire('Changes are not updated', '', 'info')
+  }
+})
+}
+
+function callNoticeSave(){
+  var d = new Date();
+  var noticeID = d.getTime();
+    firebase.database().ref("notices/student/" + noticeID).update({
+        id: noticeID,
+        class: document.getElementById("noticeClass").value,
+        date: document.getElementById("noticeDate").value,
+        month: document.getElementById("noticeMonth").value,
+        main: finalNotice,
+        nb: document.getElementById("noticeNB").value,
+    });
+    Swal.fire(
+      'Success',
+      'New Notice Uploaded.',
+      'success'
+    )
+}
+
+
