@@ -230,7 +230,11 @@ input:checked + .slider:before {
   
   <h3>Admin Settings</h3>
   <p>Exam Portal Activation Status</p>
-  <input type="text" name="examPortal" id="portalStatus">
+  <select name="examPortal" id="portalStatus">
+      <option value="ON">ON</option>
+      <option value="Started">Started</option>
+      <option value="OFF">OFF</option>
+    </select>
   <button onclick="changePortal()" id="changePortal" class="button">Change Portal Activation</button>
 </div>
 
