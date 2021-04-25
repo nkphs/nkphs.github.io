@@ -10,9 +10,11 @@ var config = {
     measurementId: "G-BQCBG9T67D"
    };
    firebase.initializeApp(config);
-
+var exitedOrNot = ["In Exam","Exited"];
 function getRoomDetails(){
 $("#tab_room").empty();
+$("#tab_minimized").empty();
+$("#tab_exited").empty();
 var rootRef = firebase.database().ref('examination/room');
 
 rootRef.on("child_added", snap => {
@@ -41,10 +43,11 @@ var minimized = snap.child("minimized").val();
 var studentName = snap.child("name").val();
 var studentRoll = snap.child("roll").val();
 var room = snap.child("room").val();
+var exitStatus = snap .child("exit").val();
 
 var removebtn = '<button onclick="removeFromDB(' + studentRoll + ')" class="button">Remove</button>';
 
-    $("#tab_student").append("<tr id=trStudent" + studentRoll + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td><td>" + removebtn + "</td></tr>");
+    $("#tab_student").append("<tr id=trStudent" + studentRoll + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td><td>" + exitedOrNot[exitStatus] + "</td><td>" + removebtn + "</td></tr>");
 });
 
 var rootRef = firebase.database().ref('examination/room/' + selectedRoom + "/attendance");
@@ -56,6 +59,7 @@ var studentName = snap.child("name").val();
 var studentRoll = snap.child("roll").val();
 var room = snap.child("room").val();
 var changedID = new Date().getTime();
+var exitStatus = snap .child("exit").val();
 var removebtn = '<button onclick="removeFromList(' + changedID + ')" class="button">Remove</button>';
 	if(minimized > 0){
 		Swal.fire({
@@ -65,9 +69,10 @@ var removebtn = '<button onclick="removeFromList(' + changedID + ')" class="butt
   			showConfirmButton: true
 		})
 		$("#tab_minimized").append("<tr id=trMinimized" + changedID + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td><td>" + removebtn + "</td></tr>");
-
 	}
-
+  if(exitStatus == 1){
+      $("#tab_exited").append("<tr><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + exitedOrNot[exitStatus] + "</td></tr>");
+    }
 	});
 }
 
