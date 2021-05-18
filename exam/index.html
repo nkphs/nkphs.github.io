@@ -319,7 +319,25 @@ input:checked + .slider:before {
     </fieldset>
 
     <fieldset>
-      <center><h3>All online Examination details || Manage & Modifications</h3><br><button class="button" onclick="getAllDates()">Load / Refresh Exam Details</button></center>
+      <center><h3>All online Examination details || Manage & Modifications</h3><br>
+          <select id="examClassChoice" name="examClassChoice">
+                <option value="NI">NI</option>
+                <option value="NII">NII</option>
+                <option value="KG">KG</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
+          </select>
+        <button class="button" onclick="getAllDates()">Load / Refresh Exam Details</button></center>
       <table>
         <tr>
           <th>Exam Name</th>
