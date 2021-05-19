@@ -148,11 +148,12 @@ var examActivation = snap.child("examActivation").val();
 var examInstruction = snap.child("examInstruction").val();
 var examPassCode = snap.child("examPassCode").val();
 var examRoom = snap.child("examRoom").val();
+var banned = snap.child("banned").val();
 var updbtn = '<button onclick="updateExam(\'' + examID + '\',\'' + examClass + '\',\'' + examSubject + '\')" class="button">Update Exam Details</button>';
 var removebtn = '<button onclick="removeExam(\'' + examID + '\',\'' + examClass + '\',\'' + examSubject + '\')" class="button">Remove Exam</button>';
 
 if(examDate != null){
-    $("#tab_report").append("<tr id=tr" + examID + examClass + examSubject + "><td>" + examName + "</td><td>" + examDate + "</td><td>" + examClass + "</td><td><input type=\"text\" id=\"downloadable" + examID + examClass + "\" value=\"" + questionDownloadable + "\"></td><td><input type=\"text\" id=\"examActivation" + examID + examClass + "\" value=\"" + examActivation + "\"></td><td>" + examSubject + "</td><td><input type=\"text\" id=\"examTime" + examID + examClass + "\" value=\"" + examTime + "\"></td><td><input type=\"text\" id=\"examFullMarks" + examID + examClass + "\" value=\"" + examFullMarks + "\"></td><td>" + examInstruction + "</td><td>" + examType + "</td><td>" + examLink + "</td><td><input type=\"text\" id=\"examPassCode" + examID + examClass + "\" value=\"" + examPassCode + "\"></td><td><input type=\"text\" id=\"examRoom" + examID + examClass + "\" value=\"" + examRoom + "\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    $("#tab_report").append("<tr id=tr" + examID + examClass + examSubject + "><td>" + examName + "</td><td>" + examDate + "</td><td>" + examClass + "</td><td><input type=\"text\" id=\"downloadable" + examID + examClass + examSubject + "\" value=\"" + questionDownloadable + "\"></td><td><input type=\"text\" id=\"examActivation" + examID + examClass + examSubject + "\" value=\"" + examActivation + "\"></td><td>" + examSubject + "</td><td><input type=\"text\" id=\"examTime" + examID + examClass + examSubject + "\" value=\"" + examTime + "\"></td><td><input type=\"text\" id=\"examFullMarks" + examID + examClass + examSubject + "\" value=\"" + examFullMarks + "\"></td><td>" + examInstruction + "</td><td>" + examType + "</td><td>" + examLink + "</td><td><input type=\"text\" id=\"examPassCode" + examID + examClass + examSubject + "\" value=\"" + examPassCode + "\"></td><td><input type=\"text\" id=\"examRoom" + examID + examClass + examSubject + "\" value=\"" + examRoom + "\"></td><td><input type=\"text\" id=\"banned" + examID + examClass + examSubject + "\" value=\"" + banned + "\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 }
 
 });
@@ -176,6 +177,7 @@ function updateExam(ID,cls,subject) {
         examPassCode: document.getElementById("examPassCode" + ID + cls + subject).value,
         examRoom: document.getElementById("examRoom" + ID + cls + subject).value,
         examTime: document.getElementById("examTime" + ID + cls + subject).value,
+        banned: document.getElementById("banned" + ID + cls + subject).value,
     });
     Swal.fire(
       'Success!',
