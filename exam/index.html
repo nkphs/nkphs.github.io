@@ -245,7 +245,25 @@ input:checked + .slider:before {
     <center><h2>Add New Question</h2>Check Date and Class carefully before proceed to submit<br>
         <table>
           <tr>
-            <td>Class: <input type="text" id="examClass" name="class"></td>
+            <td>Class: 
+              <select id="examClass" name="class">
+                <option value="NI">NI</option>
+                <option value="NII">NII</option>
+                <option value="KG">KG</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
+          </select>
+            </td>
             <td>Date: <input type="date" id="examDate" name="examdate"></td>
           </tr>
           <tr>
@@ -372,7 +390,24 @@ input:checked + .slider:before {
   <table>
           <tr>
             <td>
-              Class: <input type="text" id="noticeClass" name="noticeClass">
+              Class:
+              <select id="noticeClass" name="noticeClass">
+                <option value="NI">NI</option>
+                <option value="NII">NII</option>
+                <option value="KG">KG</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+                <option value="XI">XI</option>
+                <option value="XII">XII</option>
+          </select>
             </td>
             <td>
               Date: <input type="date" id="noticeDate" name="noticeDate">
@@ -400,11 +435,11 @@ input:checked + .slider:before {
             </td>
           </tr>
           <tr>
-	   <tr>
             <td colspan="3">
-              More detail Link (<b>Use any weblink / shared link</b>): <textarea rows="2" cols="50" id="noticeDetailLink" name="noticeDetailLink"></textarea>
+              More detail Link (<b>Use any weblink / shared link</b>): <input value="null" id="noticeDetailLink" name="noticeDetailLink">
             </td>
           </tr>
+          <tr>
             <td>
               
             </td>
@@ -427,7 +462,7 @@ input:checked + .slider:before {
       <th>Month</th>
       <th>Main Notice</th>
       <th>N.B.</th>
-      <th>Web / shared Link </th>
+      <th>Web / Shared Link</th>
       <th>Update</th>
       <th>Remove</th>
     </tr>

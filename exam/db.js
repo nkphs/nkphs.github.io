@@ -697,7 +697,7 @@ function uploadNewNotice() {
 
 function callNoticeSave(){
   var d = new Date();
-  var noticeID = d.getTime();
+  var noticeID = 2524588200000 - d.getTime();
     firebase.database().ref("notices/student/" + noticeID).update({
         id: noticeID,
         class: document.getElementById("noticeClass").value,
