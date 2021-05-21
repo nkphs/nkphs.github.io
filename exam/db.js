@@ -124,9 +124,11 @@ var noticeDate = snap.child("date").val();
 var noticeMonth = snap.child("month").val();
 var noticeMain = snap.child("main").val();
 var noticeNB = snap.child("nb").val();
+var noticeLink = snap.child("noticeLink").val();
+if(noticeLink == "null"){noticeLink = "";}
 var updbtn = '<button onclick="updateNotice(\'' + noticeID + '\')" class="button">Update Notice Details</button>';
 var removebtn = '<button onclick="removeNotice(\'' + noticeID + '\')" class="button">Remove Notice</button>';
-    $("#noticeAllView").append("<tr id=trNotice" + noticeID + "><td>" + noticeID + "</td><td><input type=\"text\" id=\"noticeClass" + noticeID + "\" value=\"" + noticeClass +"\"></td><td><input type=\"text\" id=\"noticeDate" + noticeID + "\" value=\"" + noticeDate +"\"></td><td><input type=\"text\" id=\"noticeMonth" + noticeID + "\" value=\"" + noticeMonth +"\"></td><td><textarea rows=\"4\" cols=\"50\" id=\"noticeMain" + noticeID + "\">" + noticeMain +"</textarea></td><td><input type=\"text\" id=\"noticeNB" + noticeID + "\" value=\"" + noticeNB +"\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    $("#noticeAllView").append("<tr id=trNotice" + noticeID + "><td>" + noticeID + "</td><td><input type=\"text\" id=\"noticeClass" + noticeID + "\" value=\"" + noticeClass +"\"></td><td><input type=\"text\" id=\"noticeDate" + noticeID + "\" value=\"" + noticeDate +"\"></td><td><input type=\"text\" id=\"noticeMonth" + noticeID + "\" value=\"" + noticeMonth +"\"></td><td><textarea rows=\"4\" cols=\"50\" id=\"noticeMain" + noticeID + "\">" + noticeMain +"</textarea></td><td><input type=\"text\" id=\"noticeNB" + noticeID + "\" value=\"" + noticeNB +"\"></td><td><input type=\"text\" id=\"noticeLink" + noticeID + "\" value=\"" + noticeLink +"\"></td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 });
 }
 
@@ -273,7 +275,8 @@ function updateNotice(ID){
         date: document.getElementById("noticeDate" + ID).value,
         month: document.getElementById("noticeMonth" + ID).value,
         main: document.getElementById("noticeMain" + ID).value,
-        nb: document.getElementById("noticeNB" + ID).value
+        nb: document.getElementById("noticeNB" + ID).value,
+        noticeLink: document.getElementById("noticeLink" + ID).value
     });
     Swal.fire(
       'Success!',
@@ -701,6 +704,7 @@ function callNoticeSave(){
         date: document.getElementById("noticeDate").value,
         month: document.getElementById("noticeMonth").value,
         main: finalNotice,
+        noticeLink: document.getElementById("noticeDetailLink").value,
         nb: document.getElementById("noticeNB").value,
     });
     Swal.fire(
