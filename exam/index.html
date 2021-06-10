@@ -189,6 +189,14 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+#imageCredentials{
+  background-image: url('back/back.jfif');
+  background-size: cover;
+  height: 400px;
+  width: 400px;
+  margin: 30px;
+  padding: 30px;
+}
 </style>
 </head>
 <body>
@@ -339,7 +347,20 @@ input:checked + .slider:before {
       <button onclick="submitQuestionPaper()" id="submitQuestionPaper" class="button">Submit Question Paper</button>
   </center>
     </fieldset>
-
+<center>
+<div id="imageCredentials" style="display: none;">
+  <center>
+    <h1><b>North Kolkata Public high School</b></h1>
+    <h2 id="imgName">Practice Test Examination 2021</h2>
+    <h3 id="imgDate">Date: 01/01/2021</h3>
+    <h3 id="imgSub">Subject: Demo</h2>
+    <h3 id="imgClass">Class: Demo</h2>
+    <h3 id="imgRoom">Room N0.: Demo</h3>
+    <h3 id="imgPassword">Password: Demo</h3>
+    <h4><u>This information is valid only for today's Examination.</u></h4>
+  </center>
+</div>
+</center>
     <fieldset>
       <center><h3>All online Examination details || Manage & Modifications</h3><br>
           <select id="examClassChoice" name="examClassChoice">
