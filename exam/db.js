@@ -151,6 +151,7 @@ var examInstruction = snap.child("examInstruction").val();
 var examPassCode = snap.child("examPassCode").val();
 var examRoom = snap.child("examRoom").val();
 var banned = snap.child("banned").val();
+var imgbtn = '<button onclick="getImage(\'' + examName + '\',\'' + examSubject + '\',\'' + examClass + '\',\'' + examRoom + '\',\'' + examPassCode + '\',\'' + examDate + '\')" class="button">Get Exam Credentials</button>';
 var updbtn = '<button onclick="updateExam(\'' + examID + '\',\'' + examClass + '\',\'' + examSubject + '\')" class="button">Update Exam Details</button>';
 var removebtn = '<button onclick="removeExam(\'' + examID + '\',\'' + examClass + '\',\'' + examSubject + '\')" class="button">Remove Exam</button>';
 
@@ -160,6 +161,22 @@ if(examDate != null){
 
 });
 }
+
+function getImage(examName,subject,cls,room,password,examDate) {
+    var bgArray = ['back.jfif', 'back2.jpg', 'back3.webp', 'back4.png', 'back5.jpg', 'back6.png', 'back7.jpg','back8.jpg', 'back9.webp', 'back10.jpg'];
+    var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
+    $('#imageCredentials').css('background-image', 'url(back/' + bg + ')');
+    $('#imgName').html(examName);
+    $('#imgSub').html("Subject: " + subject);
+    $('#imgClass').html("Class: " + cls);
+    $('#imgDate').html("Date " + examDate);
+    $('#imgRoom').html("Room No.: " + room);
+    $('#imgPassword').html("Password: " + password);
+    $('#imageCredentials').css('display', 'block');
+    var elmnt = document.getElementById("imageCredentials");
+    elmnt.scrollIntoView();
+
+  }
 
 function updateExam(ID,cls,subject) {
     Swal.fire({
