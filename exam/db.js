@@ -163,7 +163,7 @@ if(examDate != null){
 }
 
 function getImage(examName,subject,cls,room,password,examDate) {
-    var bgArray = ['back.jfif', 'back2.jpg', 'back3.webp', 'back4.png', 'back5.jpg', 'back6.png', 'back7.jpg','back8.jpg', 'back9.webp', 'back10.jpg'];
+    var bgArray = ['back.jfif', 'back2.jpg', 'back3.webp', 'back4.png', 'back5.jpg', 'back7.jpg', 'back9.webp', 'back10.jpg'];
     var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
     $('#imageCredentials').css('background-image', 'url(back/' + bg + ')');
     $('#imgName').html(examName);
