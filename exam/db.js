@@ -218,7 +218,7 @@ function removeExam(ID,cls,subject) {
 }).then((result) => {
   if (result.isConfirmed) {
     document.getElementById("tr" + ID + cls + subject).style.display = "none";
-    firebase.database().ref("examination/student/" + cls + "/" + ID + "/" + subject).remove(); 
+    firebase.database().ref("examination/exams/" + cls + "/" + ID + "/" + subject).remove(); 
     Swal.fire(
       'Deleted!',
       'Exam Details Removed.',
