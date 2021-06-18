@@ -368,6 +368,7 @@ function callDBSave(){
         examSubject: document.getElementById("examSubject").value,
         examTime: document.getElementById("examTime").value,
         examType: document.getElementById("examType").value,
+        banned: "0,",
     });
     Swal.fire(
       'Success',
