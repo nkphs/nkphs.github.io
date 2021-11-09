@@ -559,7 +559,7 @@ input:checked + .slider:before {
 </div> -->
 <script>
 function loadInViewer(){
-	document.getElementById("questionViewer").src = document.getElementById("examLink").value
+	document.getElementById("questionViewer").src = document.getElementById("examLink").value.replace("view?usp=sharing", "preview")
 }
 </script>
 
