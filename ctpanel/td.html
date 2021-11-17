@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Staff Control Panel</title>
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+<style type="text/css">
+    input[type=text], input[type=password], select {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=button] {
+  width: auto;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+#studentListAll {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#studentListAll td, #studentListAll th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#studentListAll tr:nth-child(even){background-color: #f2f2f2;}
+
+#studentListAll tr:hover {background-color: #ddd;}
+
+#studentListAll th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body onload="getAllStaff()">
+<center>
+<h3>Enter your login details</h3>
+<br>
+<label>Class: </label><br>
+<select id="classT" name="classT">
+  <option value="NI">NI</option>
+  <option value="NII">NII</option>
+  <option value="KG">KG</option>
+  <option value="I">I</option>
+  <option value="II">II</option>
+  <option value="III">III</option>
+  <option value="IV">IV</option>
+  <option value="V">V</option>
+  <option value="VI">VI</option>
+  <option value="VII">VII</option>
+  <option value="VIII">VIII</option>
+  <option value="IX">IX</option>
+  <option value="X">X</option>
+  <option value="XI">XI</option>
+  <option value="XII">XII</option>
+</select>
+<br>
+<label>Phone Number: </label><br>
+<input type="password" id="staffPass" placeholder="Enter Password"><br>
+<input type="button" id="loginStaff" onclick="getIDPass()" value="logIn"><br>
+</center>
+</body>
+<script type="text/javascript">
+var staffID=[];
+var classID=[];
+
+var config = {
+    apiKey: "AIzaSyCSoiDuslBP3AsGgA7tNT1Bq02XB8wEGe8",
+    authDomain: "nkphs2020.firebaseapp.com",
+    databaseURL: "https://nkphs2020-default-rtdb.firebaseio.com",
+    projectId: "nkphs2020",
+    storageBucket: "nkphs2020.appspot.com",
+    messagingSenderId: "876141817104",
+    appId: "1:876141817104:web:2bfb5de3f60265d3128995",
+    measurementId: "G-BQCBG9T67D"
+   };
+   firebase.initializeApp(config); 
+
+function getAllStaff(){
+var cnt = 0;
+var rootRef = firebase.database().ref('staff/CT');
+
+rootRef.on("child_added", snap => {
+var sstaffID = snap.child("staffID").val();
+var sclassID = snap.child("classID").val();
+staffID[cnt] = sstaffID;
+classID[cnt] = sclassID;
+cnt++;
+});
+}
+function getIDPass(){
+    if(document.getElementById("staffPass").value == window.atob("TktQSFMjMjAyMkNU")){
+    window.open("index.html?cl=" + document.getElementById("classT").value,"_blank").focus();
+    }
+    elseif(document.getElementById("staffPass").value == window.atob("TktQSFNAYWRtaW4jQ1Q=")){
+        window.open("index.html?cl=" + document.getElementById("classT").value + "=adm","_blank").focus();
+    }
+    else{
+        Swal.fire(
+                    'NKPHS',
+                    "Wrong Credentials",
+                    'info'
+                );
+
+    }
+    
+}
+</script>
+</html>

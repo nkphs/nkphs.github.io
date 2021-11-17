@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>
+Student Details Entry by Class Teacher
+</title>
+<Script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></Script>  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+
+<style>
+input[type=text], input[type=number], select {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=button], button {
+  width: auto;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+#studentListAll {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#studentListAll td, #studentListAll th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#studentListAll tr:nth-child(even){background-color: #f2f2f2;}
+
+#studentListAll tr:hover {background-color: #ddd;}
+
+#studentListAll th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+<center>
+<h1>Student Details Entry by Class Teacher Panel</h1>
+<h2 id="studentClass"><u>Class - I</u></h2>
+<h3>Enter details of new student</h3>
+<br>
+<form id="stuentForm">
+<label>Name: </label><br>
+<input type="text" id="studentName" placeholder="Enter Student Name"><br>
+<label>Roll Number: </label><br>
+<input type="number" id="studentRoll" placeholder="Enter Student Roll"><br>
+<label>Second Language: </label><br>
+<select id="secondLanguage" name="secondLanguage">
+  <option value="BENG">BENG</option>
+  <option value="HINDI">HINDI</option>
+</select>
+<input type="button" id="addNewStudent" onclick="addStudent()" value="Add New Student"><br>
+</form>
+</center>
+<br><hr width="80%">
+<center><h1>All Student List</h1></center>
+<center><input type="button" id="refreshStudent" onclick="getAllStudent()" value="Refreh Student List"><br></center><br>
+<table id="studentListAll">
+<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th id="admOnlyH" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
+<tbody id="studentList">
+
+</tbody>
+<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th id="admOnlyF" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
+<table>
+<script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
