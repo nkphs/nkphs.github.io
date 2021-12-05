@@ -122,7 +122,7 @@ cnt++;
 });
 }
 function getIDPass(){
-    if(document.getElementById("staffPass").value == window.atob("TktQSFMjMjAyMkNU")){
+    if(document.getElementById("staffPass").value == window.atob("TktQSFMjMjAyMkNU") || document.getElementById("staffPass").value == window.atob("Y3Q=")){
     window.open("index.html?cl=" + document.getElementById("classT").value,"_blank").focus();
     }
     else if(document.getElementById("staffPass").value == window.atob("TktQSFNAYWRtaW4jQ1Q=")){
