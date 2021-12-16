@@ -32,12 +32,12 @@ var orderStatus = snap.child("orderStatus").val();
 var deliveryStatus = snap.child("deliveryStatus").val();
 var updbtn = 'Current Status: ' + orderStatus + '<br><select name="orderStatus" id="orderStatus' + roll +'"><option value="No Order">No Order</option><option value="Order Placed">Order Placed</option><option value="Ready for Collect">Ready for Collect</option><option value="Order Completed">Order Completed</option></select><br><button onclick="updateOrder(\'' + roll + '\')" class="button">Update Order Status</button>';
 var removebtn = '<button onclick="removeStudent(\'' + roll + '\')" class="button">Remove Student</button>';
-
+var editbtn = '<button onclick="editStudent(\'' + roll + '\',\'' + name + '\',\'' + sl + '\')" class="button">Edit Details</button>';
 if(adm == "adm"){
-    $("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sl + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    $("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 }
 else{
-	$("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sl + "</td><td>" + removebtn + "</td></tr>");
+	$("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + removebtn + "</td></tr>");
 }
 });
 }
@@ -66,6 +66,41 @@ Swal.fire({
 
 
 	
+}
+
+
+function editStudent(roll,name,sl){
+  document.getElementById("myForm").style.display = "block";
+  document.getElementById("studentNameUpdate").value = name;
+  document.getElementById("studentRollUpdate").value = roll;
+  document.getElementById("secondLanguageUpdate").value = sl;
+}
+
+function updateStudent(){
+Swal.fire({
+  title: 'Are you sure?',
+  text: "Student details will be updated",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Update'
+}).then((result) => {
+  if (result.isConfirmed) {
+    firebase.database().ref('student/2022/' + clID + "/" + document.getElementById("studentRollUpdate").value).update({
+        name: document.getElementById("studentNameUpdate").value,
+        sl:document.getElementById("secondLanguageUpdate").value,
+    });
+    Swal.fire(
+      'Updated!',
+      'Student Details Updated.',
+      'success'
+    )
+    document.getElementById("stuentFormUpdate").reset();
+    document.getElementById("myForm").style.display = "none";
+  }
+});
+
 }
 
 function addStudent(){
@@ -103,10 +138,6 @@ else{
       'error'
     )
 }
-
-
-
-	
 }
 
 function removeStudent(roll){

@@ -88,7 +88,7 @@ div {
   <option value="XII">XII</option>
 </select>
 <br>
-<label>Password: </label><br>
+<label>Phone Number: </label><br>
 <input type="password" id="staffPass" placeholder="Enter Password"><br>
 <input type="button" id="loginStaff" onclick="getIDPass()" value="logIn"><br>
 </center>
@@ -122,10 +122,10 @@ cnt++;
 });
 }
 function getIDPass(){
-    if(document.getElementById("staffPass").value == window.atob("TktQSFMjMjAyMkNU") || document.getElementById("staffPass").value == window.atob("Y3Q=")){
+    if(document.getElementById("staffPass").value == window.atob("TktQSFMjMjAyMkNU") || document.getElementById("staffPass").value == window.atob("TjIy")){
     window.open("index.html?cl=" + document.getElementById("classT").value,"_blank").focus();
     }
-    else if(document.getElementById("staffPass").value == window.atob("TktQSFNAYWRtaW4jQ1Q=")){
+    elseif(document.getElementById("staffPass").value == window.atob("TktQSFMyMmFkbWlu")){
         window.open("index.html?cl=" + document.getElementById("classT").value + "=adm","_blank").focus();
     }
     else{

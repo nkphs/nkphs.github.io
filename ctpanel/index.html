@@ -63,6 +63,53 @@ div {
   background-color: #04AA6D;
   color: white;
 }
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background-color: #caebcc;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.8;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #ff0000;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.topright {
+  position: absolute;
+  right: 0;
+  top: 0
+}
 </style>
 </head>
 <body>
@@ -84,15 +131,34 @@ div {
 <input type="button" id="addNewStudent" onclick="addStudent()" value="Add New Student"><br>
 </form>
 </center>
+
+
+<div class="form-popup" id="myForm">
+<span onclick="document.getElementById('myForm').style.display='none'" class="close topright">&times;</span>
+<form id="stuentFormUpdate">
+<label>Name: </label><br>
+<input type="text" id="studentNameUpdate" placeholder="Enter Student Name"><br>
+<label>Roll Number: </label><br>
+<input type="number" id="studentRollUpdate" disabled placeholder="Enter Student Roll"><br>
+<label>Second Language: </label><br>
+<select id="secondLanguageUpdate" name="secondLanguage">
+  <option value="BENG">BENG</option>
+  <option value="HINDI">HINDI</option>
+</select>
+<input type="button" id="updateOldStudent" onclick="updateStudent()" value="Update Student Details"><br>
+</form>
+</div>
+
+
 <br><hr width="80%">
 <center><h1>All Student List</h1></center>
 <center><input type="button" id="refreshStudent" onclick="getAllStudent()" value="Refreh Student List"><br></center><br>
 <table id="studentListAll">
-<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th id="admOnlyH" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
+<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th>Edit Details</th><th id="admOnlyH" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
 <tbody id="studentList">
 
 </tbody>
-<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th id="admOnlyF" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
+<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th>Edit Details</th><th id="admOnlyF" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
 <table>
 <script type="text/javascript" src="index.js"></script>
 </body>
