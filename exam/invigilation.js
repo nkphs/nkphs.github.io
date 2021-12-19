@@ -46,10 +46,14 @@ var room = snap.child("room").val();
 var exitStatus = snap .child("exit").val();
 var startExam = snap.child("startTime").val();
 var endExam = snap.child("endTime").val();
-
 var removebtn = '<button onclick="removeFromDB(' + studentRoll + ')" class="button">Remove</button>';
-
-    $("#tab_student").append("<tr id=trStudent" + studentRoll + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td><td>" + startExam + "</td><td>" + endExam + "</td><td>" + exitedOrNot[exitStatus] + "</td><td>" + removebtn + "</td></tr>");
+if(exitStatus == 1){
+exitStatus = "End at: <b>" + endExam + "<b>";	
+}
+else{
+exitStatus = "In Exam";
+}
+    $("#tab_student").append("<tr id=trStudent" + studentRoll + "><td>" + studentClass + "</td><td>" + studentName +"</td><td>" + studentRoll + "</td><td>" + minimized + "</td><td>" + startExam + "</td><td>" + exitStatus + "</td><td>" + removebtn + "</td></tr>");
 });
 
 var rootRef = firebase.database().ref('examination/room/' + selectedRoom + "/attendance");
