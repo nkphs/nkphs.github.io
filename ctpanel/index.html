@@ -128,6 +128,10 @@ div {
   <option value="BENG">BENG</option>
   <option value="HINDI">HINDI</option>
 </select>
+  <select id="section" name="section">
+  <option value="A">A</option>
+  <option value="B">B</option>
+</select>
 <input type="button" id="addNewStudent" onclick="addStudent()" value="Add New Student"><br>
 </form>
 </center>
@@ -145,6 +149,10 @@ div {
   <option value="BENG">BENG</option>
   <option value="HINDI">HINDI</option>
 </select>
+  <select id="sectionUpdate" name="sectionUpdate">
+  <option value="A">A</option>
+  <option value="B">B</option>
+</select>
 <input type="button" id="updateOldStudent" onclick="updateStudent()" value="Update Student Details"><br>
 </form>
 </div>
@@ -154,11 +162,11 @@ div {
 <center><h1>All Student List</h1></center>
 <center><input type="button" id="refreshStudent" onclick="getAllStudent()" value="Refreh Student List"><br></center><br>
 <table id="studentListAll">
-<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th>Edit Details</th><th id="admOnlyH" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
+<b><tr><th>Roll No.</th><th>Student Name</th><th>Section</th><th>Second Language</th><th>Edit Details</th><th id="admOnlyH" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
 <tbody id="studentList">
 
 </tbody>
-<b><tr><th>Roll No.</th><th>Student Name</th><th>Second Language</th><th>Edit Details</th><th id="admOnlyF" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
+<b><tr><th>Roll No.</th><th>Student Name</th><th>Section</th><th>Second Language</th><th>Edit Details</th><th id="admOnlyF" style="display:none">Book Order Status</th><th>Remove Student</th></tr></b>
 <table>
 <script type="text/javascript" src="index.js"></script>
 </body>
