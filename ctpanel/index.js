@@ -7,6 +7,12 @@ if(adm == "adm"){
 	document.getElementById("admOnlyH").style.display = "block";
 	document.getElementById("admOnlyF").style.display = "block";
 }
+if(adm == "atd"){
+	document.getElementById("atd1").style.display = "none";
+	document.getElementById("atd2").style.display = "none";
+	document.getElementById("atd3").style.display = "none";
+	document.getElementById("atd4").style.display = "none";
+}
 document.getElementById("studentClass").innerHTML = "Class - " + clID;
 var config = {
     apiKey: "AIzaSyCSoiDuslBP3AsGgA7tNT1Bq02XB8wEGe8",
