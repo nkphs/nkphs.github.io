@@ -28,16 +28,17 @@ rootRef.on("child_added", snap => {
 var roll = snap.child("roll").val();
 var name = snap.child("name").val();
 var sl = snap.child("sl").val();
+var sc = snap.child("sc").val();
 var orderStatus = snap.child("orderStatus").val();
 var deliveryStatus = snap.child("deliveryStatus").val();
 var updbtn = 'Current Status: ' + orderStatus + '<br><select name="orderStatus" id="orderStatus' + roll +'"><option value="No Order">No Order</option><option value="Order Placed">Order Placed</option><option value="Ready for Collect">Ready for Collect</option><option value="Order Completed">Order Completed</option></select><br><button onclick="updateOrder(\'' + roll + '\')" class="button">Update Order Status</button>';
 var removebtn = '<button onclick="removeStudent(\'' + roll + '\')" class="button">Remove Student</button>';
-var editbtn = '<button onclick="editStudent(\'' + roll + '\',\'' + name + '\',\'' + sl + '\')" class="button">Edit Details</button>';
+var editbtn = '<button onclick="editStudent(\'' + roll + '\',\'' + name + '\',\'' + sl + '\',\'' + sc + '\')" class="button">Edit Details</button>';
 if(adm == "adm"){
-    $("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
+    $("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sc + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 }
 else{
-	$("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + removebtn + "</td></tr>");
+	$("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sc + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + removebtn + "</td></tr>");
 }
 });
 }
@@ -69,11 +70,13 @@ Swal.fire({
 }
 
 
-function editStudent(roll,name,sl){
+function editStudent(roll,name,sl,sc){
   document.getElementById("myForm").style.display = "block";
   document.getElementById("studentNameUpdate").value = name;
   document.getElementById("studentRollUpdate").value = roll;
   document.getElementById("secondLanguageUpdate").value = sl;
+  document.getElementById("sectionUpdate").value = sc;
+	
 }
 
 function updateStudent(){
@@ -90,6 +93,7 @@ Swal.fire({
     firebase.database().ref('student/2022/' + clID + "/" + document.getElementById("studentRollUpdate").value).update({
         name: document.getElementById("studentNameUpdate").value,
         sl:document.getElementById("secondLanguageUpdate").value,
+	sc:document.getElementById("sectionUpdate").value,
     });
     Swal.fire(
       'Updated!',
@@ -120,6 +124,7 @@ Swal.fire({
         name: document.getElementById("studentName").value,
         roll: document.getElementById("studentRoll").value,
         sl:document.getElementById("secondLanguage").value,
+	sc:document.getElementById("section").value,
         orderStatus: "No Order"
     });
     Swal.fire(
