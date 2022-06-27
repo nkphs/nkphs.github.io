@@ -37,6 +37,9 @@ var editbtn = '<button onclick="editStudent(\'' + roll + '\',\'' + name + '\',\'
 if(adm == "adm"){
     $("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sc + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + updbtn + "</td><td>" + removebtn + "</td></tr>");
 }
+if(adm == "atd"){
+	$("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sc + "</td><td>" + sl + "</td></tr>");
+}
 else{
 	$("#studentList").append("<tr id=trRoll" + roll + "><td>" + roll + "</td><td>" + name + "</td><td>" + sc + "</td><td>" + sl + "</td><td>" + editbtn + "</td><td>" + removebtn + "</td></tr>");
 }
